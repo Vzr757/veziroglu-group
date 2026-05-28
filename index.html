@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veziroglu</title>
+<meta name="description" content="Veziroglu is a UK private holding company. Home of Veziroglu Consulting, Vezyr Construction, and Seda Musical Instruments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f8f6f2;
+    --accent: #b8860b;
+    --accent-light: #d4a843;
+    --muted: #6b6560;
+    --rule: #d6d1ca;
+    --navy: #1E3A5F;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans); background: var(--paper); color: var(--ink);
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    padding: 4rem 2rem; position: relative;
+    background: var(--navy);
+    overflow: hidden;
+  }
+
+  /* Animated background shapes */
+  .hero::before, .hero::after {
+    content: ''; position: absolute; border-radius: 50%;
+    opacity: 0.06; pointer-events: none;
+  }
+  .hero::before {
+    width: 800px; height: 800px; top: -300px; right: -200px;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    animation: drift 20s ease-in-out infinite alternate;
+  }
+  .hero::after {
+    width: 600px; height: 600px; bottom: -200px; left: -150px;
+    background: radial-gradient(circle, #fff 0%, transparent 70%);
+    animation: drift 25s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(40px, -30px) scale(1.1); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    opacity: 0; animation: fadeUp .8s ease .2s forwards;
+  }
+
+  .monogram { margin-bottom: 2rem; }
+  .monogram svg { filter: drop-shadow(0 4px 20px rgba(0,0,0,0.15)); }
+
+  .wordmark {
+    font-family: var(--serif); font-size: 2.2rem; font-weight: 400;
+    letter-spacing: 0.12em; color: #fff; margin-bottom: 0.3rem;
+  }
+  .gold-rule {
+    width: 100px; height: 1px; background: var(--accent);
+    margin: 0.6rem auto;
+  }
+  .wordmark-sub {
+    font-family: var(--sans); font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.35em; color: rgba(255,255,255,0.4); text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+  .hero-body {
+    font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.7;
+    max-width: 440px;
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%); z-index: 1;
+    opacity: 0; animation: fadeUp .8s ease .8s forwards;
+  }
+  .scroll-hint svg {
+    animation: bob 2s ease-in-out infinite;
+    opacity: 0.3;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ── BUSINESSES SECTION ── */
+  .businesses {
+    padding: 6rem 2rem; max-width: 1100px; margin: 0 auto;
+  }
+  .businesses-label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem;
+    text-align: center;
+  }
+  .businesses h2 {
+    font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 400; text-align: center; margin-bottom: 3.5rem;
+    color: var(--ink);
+  }
+
+  .biz-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;
+  }
+
+  .biz-card {
+    border-radius: 4px; overflow: hidden; text-decoration: none;
+    color: inherit; display: flex; flex-direction: column;
+    transition: transform .3s, box-shadow .3s;
+    border: 1px solid var(--rule);
+  }
+  .biz-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  }
+
+  .biz-visual {
+    height: 200px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Consulting visual */
+  .viz-consulting {
+    background: linear-gradient(135deg, var(--navy) 0%, #2a5080 100%);
+  }
+  .viz-consulting .viz-pattern {
+    position: absolute; inset: 0; opacity: 0.08;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(255,255,255,0.3) 30px, rgba(255,255,255,0.3) 31px),
+      repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(255,255,255,0.3) 30px, rgba(255,255,255,0.3) 31px);
+  }
+  .viz-consulting .viz-icon { position: relative; z-index: 1; }
+
+  /* Construction visual */
+  .viz-construction {
+    background: linear-gradient(135deg, #3a3632 0%, #524d48 100%);
+  }
+  .viz-construction .viz-pattern {
+    position: absolute; inset: 0; opacity: 0.1;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.15) 20px, rgba(255,255,255,0.15) 21px);
+  }
+  .viz-construction .viz-icon { position: relative; z-index: 1; }
+
+  /* Music visual */
+  .viz-music {
+    background: linear-gradient(135deg, #2d2226 0%, #4a3640 100%);
+  }
+  .viz-music .viz-pattern {
+    position: absolute; inset: 0; opacity: 0.06;
+    background-image: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.2) 0%, transparent 50%),
+                       radial-gradient(circle at 70% 50%, rgba(255,255,255,0.15) 0%, transparent 40%);
+  }
+  .viz-music .viz-icon { position: relative; z-index: 1; }
+
+  .biz-body {
+    padding: 1.75rem; flex: 1; display: flex; flex-direction: column;
+    background: #fff;
+  }
+  .biz-name {
+    font-family: var(--sans); font-size: 1rem; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.2rem;
+    color: var(--ink);
+  }
+  .biz-type {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+  }
+  .biz-desc {
+    font-size: 0.86rem; color: var(--muted); line-height: 1.6;
+    flex: 1; margin-bottom: 1.25rem;
+  }
+  .biz-link {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--accent);
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: gap .2s;
+  }
+  .biz-card:hover .biz-link { gap: 0.7rem; }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 5rem 2rem; text-align: center;
+    border-top: 1px solid var(--rule);
+  }
+  .contact-line {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+  }
+  .contact-email {
+    font-family: var(--serif); font-size: 1.2rem;
+    color: var(--navy); text-decoration: none;
+    border-bottom: 1px solid transparent; transition: border-color .2s;
+  }
+  .contact-email:hover { border-color: var(--navy); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.5rem 2rem; text-align: center;
+    font-size: 0.72rem; color: var(--rule);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .wordmark { font-size: 1.6rem; }
+    .monogram svg { width: 56px; height: 60px; }
+    .biz-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    .businesses { padding: 4rem 1.25rem; }
+    .contact { padding: 3.5rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="monogram">
+      <svg width="68" height="72" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0h7.2l8.8 24.5L24.8 0H32L18.2 34h-4.4L0 0z" fill="#fff"/>
+      </svg>
+    </div>
+    <div class="wordmark">VEZIROGLU</div>
+    <div class="gold-rule"></div>
+    <div class="wordmark-sub">Group</div>
+    <p class="hero-body">A UK private holding company with three operating businesses spanning consulting, construction, and musical instrument craftsmanship.</p>
+  </div>
+  <div class="scroll-hint">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 13l5 5 5-5M7 7l5 5 5-5"/>
+    </svg>
+  </div>
+</section>
+
+<!-- BUSINESSES -->
+<section class="businesses">
+  <div class="businesses-label">Our businesses</div>
+  <h2>Three businesses. One group.</h2>
+
+  <div class="biz-grid">
+    <!-- Consulting -->
+    <a href="https://consulting.veziroglu.co.uk" class="biz-card">
+      <div class="biz-visual viz-consulting">
+        <div class="viz-pattern"></div>
+        <svg class="viz-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+        </svg>
+      </div>
+      <div class="biz-body">
+        <div class="biz-name">Veziroglu Consulting</div>
+        <div class="biz-type">Boutique Consultancy</div>
+        <p class="biz-desc">Outcome-led business transformation, data governance, resource architecture, operating model design, and licensed framework IP for regulated enterprises.</p>
+        <span class="biz-link">Visit <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <!-- Construction -->
+    <a href="https://construction.veziroglu.co.uk" class="biz-card">
+      <div class="biz-visual viz-construction">
+        <div class="viz-pattern"></div>
+        <svg class="viz-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 9h0.01M15 9h0.01M9 13h0.01M15 13h0.01"/>
+        </svg>
+      </div>
+      <div class="biz-body">
+        <div class="biz-name">Vezyr Construction</div>
+        <div class="biz-type">Building &amp; Construction</div>
+        <p class="biz-desc">Building, renovation, and construction services. Quality craftsmanship delivered with precision and care.</p>
+        <span class="biz-link">Coming soon <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <!-- Music -->
+    <a href="https://music.veziroglu.co.uk" class="biz-card">
+      <div class="biz-visual viz-music">
+        <div class="viz-pattern"></div>
+        <svg class="viz-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="18" r="4"/><circle cx="18" cy="16" r="4"/>
+          <path d="M12 18V4M22 16V2L12 4"/>
+        </svg>
+      </div>
+      <div class="biz-body">
+        <div class="biz-name">Seda Musical Instruments</div>
+        <div class="biz-type">Bespoke Drum Equipment</div>
+        <p class="biz-desc">Handcrafted, bespoke drum equipment designed and built for musicians who value precision, tone, and individuality.</p>
+        <span class="biz-link">Coming soon <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="contact-line">Enquiries</div>
+  <a href="mailto:info&#64;veziroglu.co.uk" class="contact-email">info&#64;veziroglu.co.uk</a>
+</section>
+
+<footer>
+  <div>&copy; 2026 Veziroglu Ltd. All rights reserved.</div>
+  <div style="margin-top:0.4rem;">Veziroglu Ltd · Company No. 17145088 · Registered in England and Wales</div>
+</footer>
+
+</body>
+</html>
